@@ -3,6 +3,7 @@ import java.util.Comparator;
 
 public class Ch23_2 {
 
+
     public static <E extends Comparable<E>> void mergeSort(E[] list) {
         if (list.length > 1) {
             E[] firstHalf = (E[])new Comparable[list.length / 2];
@@ -11,15 +12,12 @@ public class Ch23_2 {
 
             int secondHalfLength = list.length - list.length / 2;
             E[] secondHalf = (E[])(new Comparable[secondHalfLength]);
-            System.arraycopy(list, list.length / 2,
-                    secondHalf, 0, secondHalfLength);
+            System.arraycopy(list, list.length / 2, secondHalf, 0, secondHalfLength);
             mergeSort(secondHalf);
-
             merge(firstHalf, secondHalf, list);
         }
     }
 
-    /** Merge two sorted lists */
     public static <E extends Comparable<E>> void merge(E[] list1, E[] list2, E[] temp) {
         int current1 = 0;
         int current2 = 0;
@@ -43,17 +41,13 @@ public class Ch23_2 {
         if (list.length > 1) {
             E[] firstHalf = Arrays.copyOf(list, list.length / 2);
             mergeSort(firstHalf, comparator);
-
             E[] secondHalf = Arrays.copyOfRange(list, list.length / 2, list.length);
             mergeSort(secondHalf, comparator);
-
             merge(firstHalf, secondHalf, list, comparator);
         }
     }
 
-
-    public static <E> void merge(E[] list1, E[] list2, E[] temp,
-                                 Comparator<? super E> comparator) {
+    public static <E> void merge(E[] list1, E[] list2, E[] temp, Comparator<? super E> comparator) {
         int current1 = 0;
         int current2 = 0;
         int current3 = 0;
